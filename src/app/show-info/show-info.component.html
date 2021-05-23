@@ -11,6 +11,7 @@
     <p>{{show.summary | htmlstripper | shorten: 300}}</p>
   </mat-card-content>
   <mat-card-actions align="end">
+    <button mat-stroked-button color="primary" style="margin-right: 0.3em">Add</button>
     <button mat-flat-button color="primary" routerLink="/show/{{show.id}}">Details</button>
   </mat-card-actions>
 </mat-card>
