@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Show } from '../models/show.model';
+import { PouchService } from '../services/pouch.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-info',
@@ -9,10 +11,16 @@ import { Show } from '../models/show.model';
 export class ShowInfoComponent implements OnInit {
   @Input() show: Show;
 
-  constructor() {
+  constructor(private pouch: PouchService) {}
+
+  ngOnInit(): void {}
+
+  addShow(): void {
+    this.pouch.addShow(this.show);
   }
 
-  ngOnInit(): void {
+  removeShow(): void {
+    this.pouch.removeShow(this.show);
   }
 
 }

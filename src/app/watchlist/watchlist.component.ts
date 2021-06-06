@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Show} from '../models/show.model';
+import { Show } from '../models/show.model';
+import {PouchService} from '../services/pouch.service';
 
 @Component({
   selector: 'app-watchlist',
@@ -8,20 +9,13 @@ import {Show} from '../models/show.model';
 })
 export class WatchlistComponent implements OnInit {
   shows: Array<Show>;
-  constructor() { }
+  constructor(private pouch: PouchService) {}
 
   ngOnInit(): void {
-    this.shows = [
-      new Show({
-        id: 16579,
-        name: 'The Handmaid\'s Tale',
-        language: 'English',
-        genres: ['Drama', 'Science-Fiction'],
-        status: 'Running',
-        summary: '<p><b>The Handmaid\'s Tal…was taken from her.</p>',
-        image: {medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/301/753818.jpg'}
-      })
-    ];
+    this.loadShows();
   }
 
+  async loadShows(): Promise<void> {
+    this.shows = await this.pouch.getAllShows();
+  }
 }
