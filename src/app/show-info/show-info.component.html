@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{show.name}}</mat-card-title>
+    <mat-card-subtitle>
+      Genres: <span *ngFor="let genre of show.genres">{{genre}} </span>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <img *ngIf="show.image" mat-card-image src="{{show.image}}">
+  <mat-card-content>
+    <h5>Status: {{show.status | titlecase}}</h5>
+    <p>{{show.summary | htmlstripper | shorten: 300}}</p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-stroked-button color="primary" style="margin-right: 0.3em" (click)="removeShow()">Delete</button>
+    <button mat-stroked-button color="primary" style="margin-right: 0.3em" (click)="addShow()">Add</button>
+    <button mat-flat-button color="primary" routerLink="/show/{{show.id}}">Details</button>
+  </mat-card-actions>
+</mat-card>

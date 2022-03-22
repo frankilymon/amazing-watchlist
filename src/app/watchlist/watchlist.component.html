@@ -1,0 +1,13 @@
+<h1 *ngIf="!shows">The watchlist is empty. Use the search field to find shows to add.</h1>
+
+<div *ngIf="shows">
+  <h1>Watchlist</h1>
+  <p>You can add shows to your watchlist by searching for them using the field in the top right corner.</p>
+  <div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let show of shows">
+        <app-show-info [show]="show"></app-show-info>
+      </div>
+    </div>
+  </div>
+</div>
